@@ -98,6 +98,9 @@ async def predict_fastapi(file: UploadFile = File(...)):
     prediction = predict4(image)
     return prediction
 
+@app.get("/")
+def root():
+    return {"message": "Hi Team SapiGo Backend is ready and running!"}
 
 if __name__ == '__main__':
-    uvicorn.run(app, host='0.0.0.0', port=3001)
+    uvicorn.run(app, host='0.0.0.0', port=8000)
