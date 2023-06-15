@@ -24,7 +24,7 @@ $ cd [nama-folder]
 $ cd Scripts
 $ activate
 $ cd ..
-$ git clone https://github.com/SapiGo-Team/sapigo-api.git
+$ git clone https://github.com/SapiGo-Team/sapigo-CC-Model-ML-Deployment.git
 $ pip install -r requirements.txt
 $ uvicorn main:app --reload
 ```
@@ -49,7 +49,7 @@ $ gcloud run deploy --image gcr.io/[project-id-kalian]/Sapigo-api --platform man
 4. Buka terminal atau command prompt, lalu arahkan ke direktori tempat Anda ingin mengclone repository FastAPI.
 
 5. Klone repository FastAPI dengan menjalankan perintah berikut:
-   ` git clone https://github.com/SapiGo-Team/sapigo-api.git`
+   ` git clone https://github.com/SapiGo-Team/sapigo-CC-Model-ML-Deployment.git`
  
  6. Setelah proses clone selesai, arahkan terminal atau command prompt ke direktori FastAPI yang baru saja dikloning.
  
