@@ -1,7 +1,7 @@
-# Deploy FastAPI dengan menggunakan Cloud Run
-Deploy FastAPI Machine Learning model Team SapiGo dengan menggunakan CloudRun
+# Deploy FastAPI dwith Using Cloud Run
+Deploy FastAPI Machine Learning model Team SapiGo with using Cloud Run
 
-## Kebutuhan (requirement dengan menginstall beberapa package / tools berikut ) :
+## Requirement Packages / Tools :
 •	Pyenv (optional)
 •	Virtualenv (optional)
 •	Python 3 or up
@@ -17,19 +17,19 @@ Deploy FastAPI Machine Learning model Team SapiGo dengan menggunakan CloudRun
 •	Cloud run
 •	Container Images
 
-## Jalankan secara lokal
+## Local Run
 ```
 $ python -m venv [nama-folder]
 $ cd [nama-folder]
 $ cd Scripts
 $ activate
 $ cd ..
-$ git clone https://github.com/SapiGo-Team/sapigo-CC-Model-ML-Deployment.git
+$ git clone https://github.com/SapiGo-Team/Sapigo-CC-Model-ML-Deployment.git
 $ pip install -r requirements.txt
 $ uvicorn main:app --reload
 ```
 
-## Cara deploy ke cloud-run menggunakan cloud SDK
+## Deploy to Cloud Run using Cloud SDK
 ```
 $ gcloud init
 $ gcloud services enable run.googleapis.com
@@ -37,42 +37,52 @@ $ gcloud builds submit --tag gcr.io/[project-id-kalian]/sapigo-registry
 $ gcloud run deploy --image gcr.io/[project-id-kalian]/Sapigo-api --platform managed --region asia-southeast2 --allow-unauthenticated sapigo-model
 ```
 
-## Cara deploy ke cloud-run menggunakan Google Cloud Platform 
+## Deploy to Cloud Run using Google Cloud Platform
 
-1. Pastikan Anda memiliki akun Google Cloud Platform (GCP) yang aktif. Jika belum, daftar dan buat proyek baru di https://console.cloud.google.com.
+1. Make sure you have an active Google Cloud Platform (GCP) account. If you don't have one yet, sign up and create a new project at https://console.cloud.google.com.
 
-2. Pastikan Anda telah menginstal Google Cloud SDK (https://cloud.google.com/sdk) dan menginisialisasi dengan menjalankan perintah berikut di terminal atau command prompt:
-   ``` gcloud init ```
- 
-3. Buatlah repository di layanan pengelolaan kode seperti GitHub atau GitLab, dan pastikan repository tersebut berisi semua file yang diperlukan untuk aplikasi FastAPI, termasuk Dockerfile, requirements.txt, dan kode aplikasi FastAPI Anda.
+2. Ensure that you have installed the Google Cloud SDK (https://cloud.google.com/sdk) and initialized it by running the following command in the terminal or command prompt:
+   ```
+   gcloud init
+   ```
+3. Create a repository in a code management service such as GitHub or GitLab, and make sure the repository contains all the necessary files for your FastAPI application, including Dockerfile, requirements.txt, and your FastAPI application code.
 
-4. Buka terminal atau command prompt, lalu arahkan ke direktori tempat Anda ingin mengclone repository FastAPI.
+4. Open the terminal or command prompt and navigate to the directory where you want to clone the FastAPI repository.
 
-5. Klone repository FastAPI dengan menjalankan perintah berikut:
-   ` git clone https://github.com/SapiGo-Team/sapigo-CC-Model-ML-Deployment.git`
- 
- 6. Setelah proses clone selesai, arahkan terminal atau command prompt ke direktori FastAPI yang baru saja dikloning.
- 
- 7. Build container Docker lokal dengan menjalankan perintah berikut:
-   ` docker build -t gcr.io/[PROJECT_ID]/sapigo-registry. `
-    Ganti [PROJECT_ID] dengan ID proyek Google Cloud Platform yang telah Anda tentukan sebelumnya.
-    
- 8. Setelah proses pembangunan selesai, verifikasi bahwa kontainer Docker lokal berjalan dengan menjalankan perintah berikut:
-    ` docker run -p 8000:8000 gcr.io/[PROJECT_ID]/sapigo-registry `
-    Pastikan tidak ada kesalahan dan aplikasi FastAPI berjalan dengan baik di localhost.
+5. Clone the FastAPI repository by running the following command:
+   ```
+   git clone https://github.com/SapiGo-Team/Sapigo-CC-Model-ML-Deployment.git
+   ```
+6. After the cloning process is complete, navigate the terminal or command prompt to the newly cloned FastAPI directory.
 
-9. Jika langkah sebelumnya berhasil, berhenti dan hapus kontainer Docker yang berjalan dengan menekan Ctrl+C di terminal atau command prompt.
+7. Build the local Docker container by executing the following command:
+   ```
+   docker build -t gcr.io/[PROJECT_ID]/sapigo-registry
+   ```
+   Replace [PROJECT_ID] with your Google Cloud Platform project ID that you specified earlier.
 
-10. Untuk menerbitkan kontainer Docker ke Google Cloud Container Registry, jalankan perintah berikut:
-    ` docker push gcr.io/[PROJECT_ID]/sapigo-registry `
-    Kontainer akan diunggah ke Container Registry di proyek Google Cloud Platform yang sesuai.
-    
-11. Selanjutnya, buat layanan Cloud Run dengan menjalankan perintah berikut pada asia-southeast2(jakarta): 
-    ` gcloud run deploy --image gcr.io/[PROJECT_ID]/sapigo-registry --platform managed --region asia-southeast2 --allow-unauthenticated backendsapigo `
- 
-12. GCP akan meminta Anda untuk memilih wilayah (region) untuk mendeploy layanan Cloud Run. Pilih wilayah yang sesuai dengan kebutuhan Anda.
+8. After the build process is complete, verify that the local Docker container is running by executing the following command:
+   ```
+   docker run -p 8000:8000 gcr.io/[PROJECT_ID]/sapigo-registry
+   ```
+   Make sure there are no errors, and the FastAPI application is running successfully on localhost.
 
-13. Setelah proses deploy selesai, GCP akan memberikan URL yang dapat digunakan untuk mengakses aplikasi FastAPI yang dideploy. Salin URL tersebut dari output dan coba akses di web browser atau dengan menggunakan      perangkat lunak pengujian API seperti Postman.
+9. If the previous steps are successful, stop and delete the running Docker container by pressing Ctrl+C in the terminal or command prompt.
 
-## Demo FastAPI Models Team SapiGO
-Untuk mencoba demo model diatas bisa buka link tersebut : https://backendsapigo-u7zm6m6lkq-et.a.run.app
+10. To publish the Docker container to the Google Cloud Container Registry, execute the following command:
+    ```
+    docker push gcr.io/[PROJECT_ID]/sapigo-registry
+    ```
+    The container will be uploaded to the Container Registry in the corresponding Google Cloud Platform project.
+
+11. Next, create a Cloud Run service by running the following command in asia-southeast2 (Jakarta) region:
+    ```
+    gcloud run deploy --image gcr.io/[PROJECT_ID]/sapigo-registry --platform managed --region asia-southeast2 --allow-unauthenticated backendsapigo
+    ```
+
+12. GCP will prompt you to choose a region for deploying the Cloud Run service. Select the region that suits your needs.
+
+13. After the deployment process is complete, GCP will provide a URL that can be used to access the deployed FastAPI application. Copy that URL from the output and try accessing it in a web browser or using an API testing software like Postman.
+
+## SapiGO FastAPI Models Demo
+To try the above model demo, you can open the provided link : https://backendsapigo-u7zm6m6lkq-et.a.run.app
